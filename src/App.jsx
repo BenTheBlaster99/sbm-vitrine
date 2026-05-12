@@ -1,444 +1,466 @@
-import React from "react";
-
-const solutions = [
-  "Isolation pour Containers Maritimes & Terrestres",
-  "Housses Palettes Éco-Friendly",
-  "Accessoires pour Containers",
-  "Produits Innovants",
-];
-
-const avantages = [
-  "Expertise locale, qualité internationale",
-  "Produits éco-conçus pour un avenir durable",
-  "Solutions sur-mesure adaptées à vos besoins",
-];
+import React, { useState, useEffect } from "react";
 
 const products = [
   {
     key: "ecofriendly",
     title: "SBM EcoFriendly",
-    text: "SBM a créé pour vous un tout nouvel isolant totalement éco-responsable et recyclable. Nous sommes les seuls à proposer ce produit en version 20 DC/40DC et 40HC (modèle breveté INPI). SBM vous assure une isolation de vos conteneurs via ce produit exclusif. Produit certifié isolant — montage rapide et facile.",
+    tag: "Isolation",
+    icon: "🧊",
+    text: "SBM a créé un isolant totalement éco-responsable et recyclable, disponible en 20 DC/40DC et 40HC (modèle breveté INPI). Produit certifié isolant — montage rapide et facile.",
   },
   {
     key: "bubble",
-    title: "Housse Bubble liner™ 20DC/40DC/40HC",
-    text: "« L'air est le matériau le plus isolant au monde ». La Housse Bubble Liner est le seul liner conçu avec de la bulle d'air. Un avantage majeur pour la protection de vos produits : une protection thermique véritablement efficace grâce à des milliers de bulles d'air. Commercialisée en 5 faces, avec isolation plancher en option.",
+    title: "Housse Bubble Liner™",
+    tag: "Isolation",
+    icon: "💨",
+    text: "« L'air est le matériau le plus isolant au monde ». Un avantage majeur pour la protection de vos produits grâce à des milliers de bulles d'air. 5 faces + isolation plancher en option.",
   },
   {
     key: "liner",
     title: "SBM Liner",
-    text: "Le SBM Liner est une poche intérieure pour conteneurs maritimes disponible en deux déclinaisons : 5 faces (sans plancher) ou 6 faces (avec plancher). Son revêtement intérieur ouaté retarde la formation d'humidité et son revêtement extérieur en aluminium armé avec tissu tramé et plusieurs couches de PE permet de transporter vos denrées sensibles de façon saine.",
+    tag: "Isolation",
+    icon: "📦",
+    text: "Poche intérieure 5 ou 6 faces. Revêtement ouaté anti-humidité, extérieur aluminium armé multicouche PE. Idéal pour denrées sensibles.",
   },
   {
     key: "palette",
-    title: "Housse de palette",
-    text: "Un produit dérivé de l'isolation de conteneurs maritimes. La housse de palette possède de multiples avantages : solidité, légèreté et facilité de mise en place. Particulièrement adaptée pour le groupage ou fret aérien, elle répond parfaitement à la protection de palettes en conteneurs ou en phase de stockage.",
+    title: "Housse de Palette",
+    tag: "Palette",
+    icon: "🛋️",
+    text: "Dérivé de l'isolation maritime. Solide, léger, facile à installer. Parfaite pour groupage, fret aérien et protection palettes en stockage.",
   },
 ];
 
 const securityItems = [
-  {
-    title: "Antivol SBM Block",
-    text: "Système « SBM BLOCK » avec 3 clés non reproductibles. Résistant à 14T de pression, son utilisation est hautement recommandée pour l'export de marchandises à haute valeur ajoutée (ex : vins et spiritueux). Il est possible de fournir plusieurs antivols s'ouvrant avec la même clé.",
-  },
-  {
-    title: "Poignée antivol à glissière",
-    text: "Modèle plus léger et plus économique que le SBM Block, tout en restant très résistant. Composé de 2 barres métalliques robustes sécurisées par un cadenas ne pouvant être ouvert qu'à l'aide de 3 clés. S'ajuste aux barres des conteneurs et répond aux normes internationales ISO.",
-  },
-  {
-    title: "Forkseal",
-    text: "Système fiable de blocage des portes de conteneurs qui solidarise les barres de fermeture. La fourche est percée de façon régulière pour poser le scellé de sécurité au plus précis. Il est impossible d'ouvrir les portes du conteneur sans couper la barre de blocage.",
-  },
-  {
-    title: "Poignée antivol à usage unique",
-    text: "La poignée antivol à usage unique SBM est destinée aux transports conteneurs ou camions. Elle est composée de 2 solides barres métalliques sécurisées l'une à l'autre par un plomb qui ne se retire qu'à l'aide d'un disque électrique. Résistance à la rupture de 3,5 tonnes.",
-  },
-  {
-    title: "Plomb bouteille SBM Seal",
-    text: "Le « SBM SEAL » est un plomb « bouteille » agréé par les douanes internationales grâce à la norme ISO PASS 17712-2013. Toute tentative d'effraction endommage de façon irrémédiable le plomb bouteille. Conditionné en numérotation consécutive pour faciliter la traçabilité de chaque empotage.",
-  },
-  {
-    title: "Plomb câble",
-    text: "Ce scellé peut être installé sur tous types de conteneurs, châssis, chaînes, cordons tir, portes, et est approuvé ISO PAS 17712 sur ce diamètre de câble (3,5 mm). Après serrage, le câble ne peut plus être retiré sans être coupé.",
-  },
-  {
-    title: "Plomb plastique Easytight",
-    text: "Ce scellé plastique réglable permet de sécuriser vos sachets, sacs, ou vos transports (camions bâchés, citernes, conteneurs). Comme il doit être découpé pour être retiré, vous êtes assuré que personne n'aura eu accès à l'ouverture protégée s'il est toujours présent.",
-  },
-  {
-    title: "Anti-vol châssis",
-    text: "Cet antivol est très facile à poser et protège du vol de votre semi-remorque en empêchant l'attelage illicite. Après installation, il est impossible de désolidariser cette protection du pivot d'attelage. En acier peint, son utilisation ne requiert aucun entretien.",
-  },
+  { title: "Antivol SBM Block", icon: "🔐", text: "3 clés non reproductibles. Résistant à 14T de pression. Recommandé pour l'export de marchandises à haute valeur ajoutée (vins, spiritueux)." },
+  { title: "Poignée antivol à glissière", icon: "🔩", text: "2 barres métalliques + cadenas 3 clés. S'ajuste aux barres des conteneurs, conforme aux normes ISO internationales." },
+  { title: "Forkseal", icon: "⚓", text: "Blocage fiable des portes. La barre de blocage doit être coupée pour ouvrir — traçabilité totale des accès." },
+  { title: "Poignée antivol à usage unique", icon: "🏷️", text: "2 barres métalliques sécurisées par un plomb retiré uniquement par disque électrique. Résistance à la rupture de 3,5 tonnes." },
+  { title: "Plomb bouteille SBM Seal", icon: "🔏", text: "Agréé douanes internationales ISO PASS 17712-2013. Numérotation consécutive pour traçabilité de chaque empotage." },
+  { title: "Plomb câble", icon: "🪢", text: "Installable sur conteneurs, châssis, chaînes, portes. Approuvé ISO PAS 17712, câble 3,5 mm. Irréversible sans coupe." },
+  { title: "Plomb plastique Easytight", icon: "🔒", text: "Scellé plastique réglable pour sacs, sachets, camions bâchés, citernes et conteneurs. Doit être découpé pour être retiré." },
+  { title: "Anti-vol châssis", icon: "🚛", text: "Protège votre semi-remorque contre l'attelage illicite. Impossible à désolidariser après installation. Acier peint, sans entretien." },
 ];
 
 const controlItems = [
-  {
-    title: "Enregistreur de température à bande",
-    text: "Ce système de contrôle de température à bande est fréquemment utilisé dans la logistique de tout produit sensible aux écarts de température. Il offre un enregistrement permanent et définitif des conditions de transport, avec lecture rapide et directe des données sur la bande d'enregistrement.",
-  },
-  {
-    title: "Enregistreur de température USB",
-    text: "L'enregistreur de température USB permet de constater précisément les écarts de températures durant le voyage import ou export. La lecture est directe en le connectant à un port USB.",
-  },
-  {
-    title: "Enregistreur de température et d'humidité",
-    text: "Cet enregistreur est idéal pour toute application nécessitant la surveillance de l'humidité relative (HR) : transport, transfert, stockage. Avec son capteur d'humidité numérique intégré, il mesure et enregistre l'humidité relative sans condensation de 10 % à 100 % et la température de -30°C.",
-  },
-  {
-    title: "Système de géolocalisation TT Geo Eagle",
-    text: "L'enregistreur de données TempTale GEO Eagle permet la traçabilité de votre fret maritime pendant le voyage. Peu coûteux, il donne les informations en temps réel : l'heure, la température et la localisation.",
-  },
+  { title: "Enregistreur de température à bande", icon: "📊", text: "Enregistrement permanent des conditions de transport. Lecture rapide et directe sur la bande d'enregistrement." },
+  { title: "Enregistreur de température USB", icon: "🌡️", text: "Constate précisément les écarts de température durant le voyage import/export. Lecture directe via port USB." },
+  { title: "Enregistreur temp. & humidité", icon: "💧", text: "Surveille l'humidité relative de 10% à 100% et la température de -30°C. Capteur numérique intégré." },
+  { title: "Géolocalisation TT Geo Eagle", icon: "📡", text: "Traçabilité de votre fret maritime en temps réel : heure, température et localisation GPS. Peu coûteux, très efficace." },
 ];
 
 const humidityItems = [
-  {
-    title: "Absorbeur d'humidité",
-    text: "Les déshydratants en barquettes permettent de réduire et stabiliser le taux d'humidité contenu dans l'air à l'intérieur du conteneur. Ils ont un grand pouvoir d'absorption allant jusqu'à 4 fois leur poids d'origine et sont faciles à mettre en place grâce à leur système de suspension.",
-  },
-  {
-    title: "Absorgel Hanging",
-    text: "AbsorGel Hanging exploite la propension du chlorure de calcium à absorber l'humidité de l'air de façon extrêmement efficace. L'eau absorbée est stockée sous forme de gel : ce procédé élimine tout risque de fuite.",
-  },
-  {
-    title: "Absorpole",
-    text: "Absorpole exploite la capacité du chlorure de calcium à absorber efficacement l'humidité de l'air. L'eau capturée est stockée dans un réservoir conçu pour éviter toute dispersion. Facile d'utilisation, il occupe un espace minimal tout en offrant une efficacité maximale.",
-  },
-  {
-    title: "Sachet déshydratant",
-    text: "De la famille des absorbeurs d'humidité, ce produit est très efficace pour assécher et repousser toute forme d'humidité ou de condensation à l'intérieur d'emballages fermés (colis, cartons, caisses bois, tubes). Il est souvent sollicité pour éviter la fermentation, la moisissure, la corrosion des métaux et la condensation.",
-  },
+  { title: "Absorbeur d'humidité", icon: "🧲", text: "Déshydratants en barquettes absorbant jusqu'à 4× leur poids. Réduction du taux d'humidité à l'intérieur du conteneur." },
+  { title: "Absorgel Hanging", icon: "🧴", text: "Chlorure de calcium absorbant l'humidité de l'air. Eau stockée en gel — élimine tout risque de fuite." },
+  { title: "Absorpole", icon: "🏗️", text: "Espace minimal, efficacité maximale. Réservoir intégré évitant toute dispersion de l'eau capturée." },
+  { title: "Sachet déshydratant", icon: "🛍️", text: "Idéal pour emballages fermés. Évite fermentation, moisissure, corrosion et condensation." },
 ];
 
 const protectionItems = [
-  {
-    title: "Bâche pour conteneur Open-Top",
-    text: "Lorsque vous avez besoin de protéger votre chargement à l'intérieur d'un conteneur open top, vous utilisez une bâche spécifique pour open top. Cette bâche recouvre le toit ouvert du conteneur et protège le chargement des intempéries et des curieux.",
-  },
+  { title: "Bâche pour conteneur Open-Top", icon: "☂️", text: "Recouvre le toit ouvert du conteneur open top. Protège le chargement des intempéries et des regards indiscrets." },
 ];
 
 const stowageItems = [
-  {
-    title: "Bâche de retenue",
-    text: "La bâche de retenue préserve directement la sécurité en évitant la chute de colis à l'ouverture des portes, lors du dépotage à destination, ou pendant la ramasse de différents lots dans un conteneur de groupage. Elle permet aussi de séparer et d'identifier les différents lots dans un chargement.",
-  },
-  {
-    title: "Liner vrac + barres 20DC/30DC/40DC/40HC",
-    text: "Ce liner permet de charger du VRAC (céréales, poudres, granulés et autres) dans les conteneurs maritimes. Facile à installer, il peut être mis en place directement par le chargeur.",
-  },
-  {
-    title: "Coussin de calage réutilisable",
-    text: "Pendant le transport, vos marchandises fragiles peuvent glisser et s'endommager. Les coussins de calage Turbo offrent une sécurité optimale tout au long du transport : ils calent les marchandises, résistent aux chocs, gardent leur forme initiale et restent économiques.",
-  },
-  {
-    title: "Barre télescopique",
-    text: "La barre de maintien ajustable est une barre télescopique qui permet de caler des éléments horizontalement ou verticalement à l'intérieur d'un conteneur standard ou frigorifique. Elle se place facilement grâce à sa poignée glissière et au serrage final.",
-  },
-  {
-    title: "Crochet reefer",
-    text: "Notre crochet reefer en acier électro-zingué se glisse dans les T bar floor et se verrouille à l'endroit souhaité en vissant l'œillet. Il permet d'y glisser une sangle pour assurer le bon maintien des marchandises.",
-  },
-  {
-    title: "Sangle à cliquet",
-    text: "Dans sa gamme calage et arrimage, SBM propose des ensembles à cliquet 5 tonnes 9,50 m avec utilisation conteneurs (crochet J) ou camions (crochet U), disponibles en plusieurs dimensions et formats.",
-  },
-  {
-    title: "Sangle d'arrimage voiture à cliquet (1 partie)",
-    text: "Les sangles d'arrimage pour voiture sont simples d'utilisation et permettent un ancrage rapide. Il suffit de former une boucle via l'anneau d'arrimage du conteneur et la jante du véhicule, puis d'ajuster le serrage avec le cliquet.",
-  },
-  {
-    title: "Sangle d'arrimage perdue",
-    text: "La sangle d'arrimage 2 T ou 6 T permet le maintien de charges lourdes pendant leur transport en conteneurs ou camions. Présentée au mètre linéaire, elle s'optimise selon vos besoins, avec boucles et crochets adaptés.",
-  },
-  {
-    title: "Boucles et crochets pour sangles perdues",
-    text: "Les boucles d'arrimage sont indispensables au serrage et au maintien des sangles sur les colis à stabiliser pendant le transport. Simple d'utilisation, c'est le mode d'arrimage le plus répandu quand les sangles à cliquet ne sont pas adaptées.",
-  },
-  {
-    title: "Film bulles",
-    text: "Anti-statique ou classique, disponible en 1 m x 150 m et 1,5 m x 100 m.",
-  },
+  { title: "Bâche de retenue", icon: "🛡️", text: "Évite la chute de colis à l'ouverture des portes. Sépare et identifie les lots dans un conteneur de groupage." },
+  { title: "Liner vrac + barres", icon: "🌾", text: "Charge du VRAC (céréales, poudres, granulés) dans les conteneurs maritimes. Installation directe par le chargeur." },
+  { title: "Coussin de calage réutilisable", icon: "💺", text: "Coussins d'air Turbo — calent les marchandises, résistent aux chocs, gardent leur forme. Solution économique." },
+  { title: "Barre télescopique", icon: "📏", text: "Cale des éléments horizontalement ou verticalement dans conteneur standard ou frigorifique. Réglage par poignée glissière." },
+  { title: "Crochet reefer", icon: "🪝", text: "Acier électro-zingué, se glisse dans les T bar floor. Permet de fixer une sangle pour maintenir vos marchandises." },
+  { title: "Sangle à cliquet", icon: "⛓️", text: "Ensembles à cliquet 5T, 9,50 m. Crochet J (conteneur) ou crochet U (camion). Plusieurs dimensions disponibles." },
+  { title: "Sangle d'arrimage voiture", icon: "🚗", text: "Ancrage rapide via anneau d'arrimage du conteneur et jante du véhicule. Serrage par cliquet." },
+  { title: "Sangle d'arrimage perdue", icon: "🧵", text: "2T ou 6T. Présentée au mètre linéaire pour optimiser l'utilisation selon vos besoins, avec boucles et crochets." },
+  { title: "Boucles et crochets", icon: "🔗", text: "Indispensables au serrage et maintien des sangles. Mode d'arrimage le plus répandu quand les sangles à cliquet ne conviennent pas." },
+  { title: "Film bulles", icon: "🫧", text: "Anti-statique ou classique. Disponible en 1 m × 150 m et 1,5 m × 100 m." },
 ];
 
+// null = no image file exists for this item
 const pictureOverrides = {
-  "Housse Bubble liner™ 20DC/40DC/40HC": "/pictures/Bubble liner 20dc .png",
+  "Housse Bubble Liner™": "/pictures/Bubble liner 20dc .png",
   "Anti-vol châssis": "/pictures/Anti-vol chassis.png",
-  "Liner vrac + barres 20DC/30DC/40DC/40HC": "/pictures/Liner vrac + barres 20DC",
+  "Housse de Palette": "/pictures/Housse de palette.png",
+  "Enregistreur temp. & humidité": "/pictures/Enregistreur de température et d'humidité.png",
+  "Géolocalisation TT Geo Eagle": "/pictures/Système de géolocalisation TT Geo Eagle.png",
+  "Sangle d'arrimage voiture": "/pictures/Sangle d'arrimage voiture à cliquet (1 partie).png",
+  "Boucles et crochets": "/pictures/Boucles et crochets pour sangles perdues.png",
+  "Liner vrac + barres": null,
 };
 
-const getPicturePath = (title) =>
-  pictureOverrides[title] ?? `/pictures/${encodeURIComponent(title)}.png`;
+const getPicturePath = (title) => {
+  if (title in pictureOverrides) return pictureOverrides[title];
+  return `/pictures/${encodeURIComponent(title)}.png`;
+};
 
-function CatalogCard({ item, titleColorClass = "" }) {
+function CatalogCard({ item, accentColor = "#0f4d97" }) {
+  const picSrc = getPicturePath(item.title);
   return (
     <article className="catalog-card">
-      <img
-        className="catalog-image"
-        src={getPicturePath(item.title)}
-        alt={item.title}
-        loading="lazy"
-        onError={(e) => {
-          e.currentTarget.style.display = "none";
-        }}
-      />
-      <h3 className={titleColorClass}>{item.title}</h3>
+      <div className="catalog-card-icon" style={{ color: accentColor }}>
+        {item.icon || "📦"}
+      </div>
+      {picSrc && (
+        <img
+          className="catalog-image"
+          src={picSrc}
+          alt={item.title}
+          loading="lazy"
+          onError={(e) => { e.currentTarget.style.display = "none"; }}
+        />
+      )}
+      <h3 className="catalog-card-title" style={{ color: accentColor }}>
+        {item.title}
+      </h3>
       <p>{item.text}</p>
     </article>
   );
 }
 
+function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const links = [
+    { label: "À propos", href: "#apropos" },
+    { label: "Produits", href: "#produits" },
+    { label: "Éco-Friendly", href: "#eco" },
+    { label: "Sécurité", href: "#securite" },
+  ];
+
+  return (
+    <nav className={`navbar${scrolled ? " navbar-scrolled" : ""}`}>
+      <a href="#top" className="navbar-brand">
+        <img src="/assets/a better logo.png" alt="SBM Logo" className="navbar-logo" />
+      </a>
+      <button
+        className="navbar-burger"
+        onClick={() => setMenuOpen((v) => !v)}
+        aria-label="Menu"
+      >
+        <span /><span /><span />
+      </button>
+      <ul className={`navbar-links${menuOpen ? " open" : ""}`}>
+        {links.map((l) => (
+          <li key={l.href}>
+            <a href={l.href} onClick={() => setMenuOpen(false)}>{l.label}</a>
+          </li>
+        ))}
+        <li>
+          <a href="#devis" className="navbar-cta" onClick={() => setMenuOpen(false)}>
+            Demander un devis
+          </a>
+        </li>
+      </ul>
+    </nav>
+  );
+}
+
+function DevisForm() {
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
+  if (submitted) {
+    return (
+      <div className="devis-success">
+        <span>✅</span>
+        <h3>Demande envoyée !</h3>
+        <p>Merci pour votre message. Notre équipe vous contactera dans les 24 heures.</p>
+        <p>Pour toute urgence : <strong>+213 7 81 86 12 88</strong></p>
+      </div>
+    );
+  }
+
+  return (
+    <form className="devis-form" onSubmit={handleSubmit}>
+      <div className="devis-row">
+        <label>
+          NOM *
+          <input type="text" name="nom" placeholder="Votre nom" required />
+        </label>
+        <label>
+          SOCIÉTÉ
+          <input type="text" name="societe" placeholder="Votre entreprise" />
+        </label>
+      </div>
+      <div className="devis-row">
+        <label>
+          EMAIL *
+          <input type="email" name="email" placeholder="votre@email.com" required />
+        </label>
+        <label>
+          TÉLÉPHONE
+          <input type="tel" name="tel" placeholder="+213 ..." />
+        </label>
+      </div>
+      <div className="devis-row">
+        <label>
+          PRODUIT(S) SOUHAITÉ(S) *
+          <select name="produit" required defaultValue="">
+            <option value="" disabled>Sélectionnez un produit…</option>
+            <option>SBM EcoFriendly (isolant)</option>
+            <option>Bubble Liner™ 20DC/40DC/40HC</option>
+            <option>SBM Liner (5 ou 6 faces)</option>
+            <option>Housse de palette</option>
+            <option>Absorbeurs d'humidité</option>
+            <option>Antivol / Sécurité</option>
+            <option>Calage & Arrimage</option>
+            <option>Enregistreurs température / humidité</option>
+            <option>Géolocalisation TT Geo Eagle</option>
+            <option>Plusieurs produits</option>
+          </select>
+        </label>
+        <label>
+          FORMAT CONTENEUR
+          <select name="format" defaultValue="">
+            <option value="" disabled>Format…</option>
+            <option>20 pieds (20DC)</option>
+            <option>40 pieds (40DC)</option>
+            <option>40 pieds High Cube (40HC)</option>
+            <option>Autre / Multiple</option>
+          </select>
+        </label>
+      </div>
+      <label className="devis-full">
+        QUANTITÉ ESTIMÉE
+        <input type="text" name="quantite" placeholder="ex : 10 unités" />
+      </label>
+      <label className="devis-full">
+        MESSAGE / DÉTAILS SUPPLÉMENTAIRES
+        <textarea
+          name="message"
+          rows={5}
+          placeholder="Décrivez votre besoin, vos contraintes spécifiques…"
+        />
+      </label>
+      <button type="submit" className="devis-submit">
+        ENVOYER MA DEMANDE →
+      </button>
+      <p className="devis-note">Réponse garantie sous 24h — vos données restent confidentielles</p>
+    </form>
+  );
+}
+
 function App() {
   return (
-    <main>
-      <img
-        className="top-logo"
-        src="/assets/a better logo.png"
-        alt="Logo SBM"
-      />
+    <>
+      <Navbar />
 
-      <section className="hero">
-        <div className="content-wrap">
-          <div className="hero-badge">SBM PRODUCTS & SCES</div>
-          <h1 className="hero-title">
-            Les spécialistes de l'isolation, l'équipement & accessoires pour
-            conteneurs
-          </h1>
-          <p className="hero-subtitle">
-            SBM Fabrication accompagne les professionnels du transport et de la
-            logistique avec des solutions durables et performantes.
-          </p>
+      <section id="top" className="hero">
+        <div className="content-wrap hero-inner">
+          <div className="hero-text">
+            <div className="hero-badge">SBM PRODUCTS & SCES · CANASTEL, ORAN</div>
+            <h1 className="hero-title">
+              Isolation &amp;<br />Équipement<br />Conteneurs
+            </h1>
+            <p className="hero-subtitle">
+              SBM Fabrication conçoit des solutions d'isolation haute performance,
+              des accessoires de sécurité et des systèmes de contrôle pour
+              conteneurs maritimes et terrestres — 20' à 40'HC.
+            </p>
+            <div className="hero-actions">
+              <a href="#devis" className="btn-primary">Demander un devis</a>
+              <a href="#produits" className="btn-ghost">Voir nos produits</a>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="about section-card">
+      <section id="apropos" className="section section-light">
         <div className="content-wrap">
-          <h1>
-            SBM Fabrication – Spécialiste de l'isolation et des solutions
-            logistiques éco-responsables à Oran
-          </h1>
-
-          <h2>À propos de nous</h2>
-          <p>
+          <div className="section-label">À PROPOS DE SBM</div>
+          <h2 className="section-title">L'expertise au<br />service du terrain</h2>
+          <p className="section-lead">
             Basée à Canastel–Oran, SBM Fabrication est une entreprise innovante
-            spécialisée dans la fabrication de solutions d'isolation pour
-            containers et d'accessoires logistiques haut de gamme. Depuis notre
-            création, nous mettons notre expertise au service des professionnels
-            du transport, de la logistique et de l'industrie, en proposant des
-            produits performants, durables et respectueux de l'environnement.
+            spécialisée dans la fabrication de solutions d'isolation pour conteneurs
+            et d'accessoires logistiques haut de gamme. Depuis notre création, nous
+            mettons notre expertise au service des professionnels du transport, de
+            la logistique et de l'industrie.
           </p>
+          <div className="about-grid">
+            {[
+              { icon: "🏭", title: "Fabrication Algérienne", desc: "Production locale, qualité internationale. Certification ISO 9001." },
+              { icon: "🌿", title: "Éco-responsable", desc: "Matières recyclées, PE monomatière 100% re-valorisable." },
+              { icon: "⚙️", title: "Solutions sur-mesure", desc: "Adaptation à tous les formats et secteurs d'activité." },
+            ].map((item) => (
+              <div key={item.title} className="about-card">
+                <div className="about-card-icon">{item.icon}</div>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="about-badges">
+            <div className="about-badge"><strong>ISO 9001</strong><span>Fabrication certifiée</span></div>
+            <div className="about-badge"><strong>♻️ PE Recyclé</strong><span>Monomatière 100% valorisable</span></div>
+            <div className="about-badge"><strong>🌊 Étanche</strong><span>Eau & air — protection totale</span></div>
+          </div>
 
-          <h2>Nos Solutions</h2>
-          <ul className="check-list">
-            <li>
-              <strong>{solutions[0]} :</strong> Nous concevons et fabriquons des
-              housses isolantes adaptées aux containers de 20 pieds et 40
-              pieds, garantissant la protection de vos marchandises contre les
-              variations thermiques et l'humidité pendant le transport ou le
-              stockage.
-            </li>
-            <li>
-              <strong>{solutions[1]} :</strong> Nos housses pour palettes sont
-              fabriquées à partir de matières recyclées et éco-responsables,
-              pour une logistique durable sans compromis sur la qualité.
-            </li>
-            <li>
-              <strong>{solutions[2]} :</strong>
-              <ul>
-                <li>
-                  Coussins de calage gonflables pour sécuriser vos chargements
-                </li>
-                <li>
-                  Solutions sur mesure pour répondre à tous vos besoins
-                  spécifiques
-                </li>
-              </ul>
-            </li>
-            <li>
-              <strong>{solutions[3]} :</strong> SBM Fabrication élargit
-              constamment son catalogue avec des solutions sur mesure et
-              performantes, adaptées à tous les secteurs d'activité.
-            </li>
+          <h3 className="subsection-title">Nos Solutions</h3>
+          <ul className="solutions-list">
+            <li><strong>Isolation Containers Maritimes & Terrestres :</strong> Housses isolantes 20 et 40 pieds — protection contre variations thermiques et humidité.</li>
+            <li><strong>Housses Palettes Éco-Friendly :</strong> Matières recyclées et éco-responsables pour une logistique durable.</li>
+            <li><strong>Accessoires pour Containers :</strong> Coussins de calage gonflables + solutions sur mesure.</li>
+            <li><strong>Produits Innovants :</strong> Catalogue en constante expansion, adapté à tous les secteurs.</li>
           </ul>
 
-          <h2>Pourquoi choisir SBM Fabrication ?</h2>
-          <ul className="icon-list">
-            {avantages.map((item) => (
+          <h3 className="subsection-title">Pourquoi choisir SBM Fabrication ?</h3>
+          <ul className="why-list">
+            {["Expertise locale, qualité internationale", "Produits éco-conçus pour un avenir durable", "Solutions sur-mesure adaptées à vos besoins"].map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
         </div>
       </section>
 
-      <section className="eco section-card">
+      <section id="eco" className="section section-dark">
         <div className="content-wrap">
-          <div className="eco-header">
-            <h2>ISOLANT ÉCO-FRIENDLY</h2>
-            <p>Produit monomatière recyclable et re-valorisable à 100 %.</p>
-          </div>
-          <div className="eco-content">
-            <article className="eco-panel">
-              <h3>Avantages</h3>
-              <ul>
-                <li>Isolation hiver/été performante</li>
-                <li>Découpe souple, légère, simple à poser</li>
-                <li>Sans particules volatiles, inodore</li>
-                <li>Produit 100 % recyclable et valorisable</li>
-                <li>✅ Produit certifié isolant</li>
-                <li>✅ Housse Bubble — un atout majeur pour la protection de vos produits en conteneur</li>
-              </ul>
-            </article>
-            <article className="eco-panel eco-panel-highlight">
-              <h3>Bilan CO² / Empreinte carbone</h3>
-              <p>Résultat de l'empreinte carbone : 0,89 T.CO²</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section className="products section-card">
-        <div className="content-wrap">
-          <h2 className="section-banner section-banner-green">L'isolation</h2>
-          <div className="products-grid">
-            {products.map((product) => (
-              <CatalogCard
-                key={product.key}
-                item={product}
-                titleColorClass="products-title"
-              />
+          <div className="section-label light">ÉCO-FRIENDLY</div>
+          <h2 className="section-title light">Un isolant<br />vraiment vert</h2>
+          <p className="section-lead light">Notre SBM EcoFriendly est le seul isolant à proposer un bilan CO₂ certifié et une fin de vie 100% recyclable. Produit certifié isolant, idéal pour la protection de vos produits en conteneur.</p>
+          <div className="eco-grid">
+            {[
+              { icon: "♻️", title: "Monomatière PE recyclé", desc: "100% recyclable et re-valorisable en fin de vie. Zéro mélange de matériaux." },
+              { icon: "🫁", title: "Sans particules volatiles", desc: "Sans danger pour la santé — imputrescible, inodore, n'attire pas les nuisibles." },
+              { icon: "⚡", title: "Économie d'énergie", desc: "Isolation durable réduisant les pertes thermiques, été comme hiver." },
+              { icon: "☀️", title: "Protection UV & IR", desc: "Bouclier contre rayonnements UV, infrarouge et variations thermiques." },
+            ].map((item) => (
+              <div key={item.title} className="eco-card">
+                <span className="eco-icon">{item.icon}</span>
+                <h4>{item.title}</h4>
+                <p>{item.desc}</p>
+              </div>
             ))}
           </div>
+          <div className="eco-result">
+            <div className="co2-badge">
+              <span className="co2-number">0.89</span>
+              <span className="co2-unit">Tonnes CO₂</span>
+              <span className="co2-label">Empreinte carbone</span>
+            </div>
+            <div className="thermal-table">
+              <h4>Résistance thermique</h4>
+              <table>
+                <thead><tr><th>Modèle</th><th>λ PET [W/m.k]</th><th>λ PEMHD [W/m.k]</th></tr></thead>
+                <tbody>
+                  <tr><td>Film 1 bulle</td><td>0.02846</td><td>0.02949</td></tr>
+                  <tr><td>Film 2 bulles</td><td>0.03012</td><td>0.03559</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="catalog-section security section-card">
+      <section id="produits" className="section section-light">
         <div className="content-wrap">
-          <h2 className="section-banner section-banner-red">La sécurité</h2>
+          <div className="section-label">NOS PRODUITS</div>
+          <h2 className="section-title">L'isolation &amp;<br />l'équipement</h2>
+          <p className="section-lead">De l'isolation thermique aux accessoires de calage, SBM couvre l'ensemble de vos besoins conteneurs.</p>
+          <div className="products-grid">
+            {products.map((p) => {
+              const picSrc = getPicturePath(p.title);
+              return (
+                <article key={p.key} className="product-card">
+                  <div className="product-card-tag">{p.icon} {p.tag}</div>
+                  {picSrc && (
+                    <img
+                      className="product-img"
+                      src={picSrc}
+                      alt={p.title}
+                      loading="lazy"
+                      onError={(e) => { e.currentTarget.style.display = "none"; }}
+                    />
+                  )}
+                  <h3>{p.title}</h3>
+                  <p>{p.text}</p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section id="securite" className="section section-gray">
+        <div className="content-wrap">
+          <div className="section-label">SÉCURITÉ & CONTRÔLE</div>
+          <h2 className="section-title">Protégez vos<br />marchandises</h2>
           <div className="catalog-grid">
             {securityItems.map((item) => (
-              <CatalogCard
-                key={item.title}
-                item={item}
-                titleColorClass="security-title"
-              />
+              <CatalogCard key={item.title} item={item} accentColor="#b22544" />
             ))}
           </div>
-        </div>
-      </section>
 
-      <section className="catalog-section control section-card">
-        <div className="content-wrap">
-          <h2 className="section-banner section-banner-orange">Le contrôle</h2>
+          <div className="section-divider" />
+          <div className="section-label" style={{ marginTop: "2rem" }}>LE CONTRÔLE</div>
           <div className="catalog-grid">
             {controlItems.map((item) => (
-              <CatalogCard
-                key={item.title}
-                item={item}
-                titleColorClass="control-title"
-              />
+              <CatalogCard key={item.title} item={item} accentColor="#cc7f1a" />
             ))}
           </div>
-        </div>
-      </section>
 
-      <section className="catalog-section humidity section-card">
-        <div className="content-wrap">
-          <h2 className="section-banner section-banner-orange">
-            La gestion de l'humidité
-          </h2>
+          <div className="section-divider" />
+          <div className="section-label" style={{ marginTop: "2rem" }}>GESTION DE L'HUMIDITÉ</div>
           <div className="catalog-grid">
             {humidityItems.map((item) => (
-              <CatalogCard key={item.title} item={item} titleColorClass="control-title" />
+              <CatalogCard key={item.title} item={item} accentColor="#1a7fc1" />
             ))}
           </div>
-        </div>
-      </section>
 
-      <section className="catalog-section protection section-card">
-        <div className="content-wrap">
-          <h2 className="section-banner section-banner-orange">La Protection</h2>
-          <div className="catalog-grid catalog-grid-single">
-            {protectionItems.map((item) => (
-              <CatalogCard key={item.title} item={item} titleColorClass="control-title" />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="catalog-section stowage section-card">
-        <div className="content-wrap">
-          <h2 className="section-banner section-banner-orange">
-            Le calage et l'arrimage
-          </h2>
+          <div className="section-divider" />
+          <div className="section-label" style={{ marginTop: "2rem" }}>PROTECTION & CALAGE</div>
           <div className="catalog-grid">
-            {stowageItems.map((item) => (
-              <CatalogCard key={item.title} item={item} titleColorClass="control-title" />
+            {[...protectionItems, ...stowageItems].map((item) => (
+              <CatalogCard key={item.title} item={item} accentColor="#2a8a3e" />
             ))}
           </div>
         </div>
       </section>
 
-      <section className="quote-section section-card">
-        <div className="content-wrap">
-          <h2 className="section-banner section-banner-blue">Demande de devis</h2>
-          <p className="quote-intro">
-            Besoin d'une solution d'isolation ou d'accessoires logistiques ?
-            Envoyez-nous votre demande, nous vous répondons rapidement.
-          </p>
-          <form className="quote-form" action="#" method="post">
-            <label>
-              Nom complet
-              <input type="text" name="fullName" required />
-            </label>
-            <label>
-              Entreprise
-              <input type="text" name="company" />
-            </label>
-            <label>
-              Email
-              <input type="email" name="email" required />
-            </label>
-            <label>
-              Téléphone
-              <input type="tel" name="phone" />
-            </label>
-            <label>
-              Besoin principal
-              <select name="need" defaultValue="Isolation">
-                <option>Isolation</option>
-                <option>Housses palettes</option>
-                <option>Accessoires logistiques</option>
-                <option>Solution sur mesure</option>
-              </select>
-            </label>
-            <label className="quote-full">
-              Détails de votre demande
-              <textarea
-                name="message"
-                rows={5}
-                placeholder="Type de marchandise, dimensions, destination, délai, etc."
-                required
-              />
-            </label>
-            <button type="submit" className="quote-submit">
-              Envoyer la demande
-            </button>
-          </form>
-        </div>
-      </section>
-
-      <section className="contact-section section-card">
-        <div className="content-wrap contact-wrap">
-          <img className="contact-logo" src="/assets/a better logo.png" alt="Logo SBM" />
-          <div className="contact-content">
-            <h2>Contact</h2>
-            <p>BOUZEROUATA MOHAMMED</p>
-            <p>DIRECTEUR COMMERCIAL</p>
-            <p>Tel : +213 7 81861288</p>
-            <p>e-mail : sbm31dz@gmail.com</p>
-            <p>CANASTEL - ORAN - ALGERIE</p>
+      <section id="devis" className="section section-devis">
+        <div className="devis-split">
+          <div className="devis-info">
+            <div className="section-label light">NOUS CONTACTER</div>
+            <h2 className="section-title light devis-heading">Demandez votre<br />devis personnalisé</h2>
+            <p className="section-lead light devis-intro">
+              Notre équipe vous répond dans les 24h. Précisez vos besoins et la taille de vos conteneurs pour une offre sur-mesure.
+            </p>
+            <ul className="contact-list">
+              <li><span>📞</span><div><strong>Téléphone</strong><br />+213 7 81 86 12 88</div></li>
+              <li><span>✉️</span><div><strong>Email</strong><br />sbm31dz@gmail.com</div></li>
+              <li><span>📍</span><div><strong>Adresse</strong><br />Canastel · Oran · Algérie 31000</div></li>
+              <li><span>👤</span><div><strong>Directeur commercial</strong><br />Bouzerouata Mohammed</div></li>
+            </ul>
+          </div>
+          <div className="devis-form-column">
+            <div className="devis-box">
+              <h3>Demande de devis</h3>
+              <p>Remplissez ce formulaire et nous vous recontactons rapidement.</p>
+              <DevisForm />
+            </div>
           </div>
         </div>
       </section>
-    </main>
+
+      <footer className="footer">
+        <div className="content-wrap footer-inner">
+          <span className="footer-brand">SBM PRODUCTS &amp; SCES</span>
+          <span className="footer-copy">© 2025 SBM Fabrication — Canastel, Oran, Algérie</span>
+          <nav className="footer-nav">
+            <a href="#apropos">À PROPOS</a>
+            <a href="#produits">PRODUITS</a>
+            <a href="#devis">CONTACT</a>
+          </nav>
+        </div>
+      </footer>
+    </>
   );
 }
 
