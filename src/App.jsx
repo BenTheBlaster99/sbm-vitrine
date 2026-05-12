@@ -36,133 +36,8 @@ const products = [
   },
 ];
 
-const securityItems = [
-  {
-    title: "Antivol SBM Block",
-    text: "Système « SBM BLOCK » avec 3 clés non reproductibles. Résistant à 14T de pression, son utilisation est hautement recommandée pour l’export de marchandises à haute valeur ajoutée (ex : vins et spiritueux). Il est possible de fournir plusieurs antivols s’ouvrant avec la même clé.",
-  },
-  {
-    title: "Poignée antivol à glissière",
-    text: "Modèle plus léger et plus économique que le SBM Block, tout en restant très résistant. Composé de 2 barres métalliques robustes sécurisées par un cadenas ne pouvant être ouvert qu’à l’aide de 3 clés. S’ajuste aux barres des conteneurs et répond aux normes internationales ISO.",
-  },
-  {
-    title: "Forkseal",
-    text: "Système fiable de blocage des portes de conteneurs qui solidarise les barres de fermeture. La fourche est percée de façon régulière pour poser le scellé de sécurité au plus précis. Il est impossible d’ouvrir les portes du conteneur sans couper la barre de blocage.",
-  },
-  {
-    title: "Poignée antivol à usage unique",
-    text: "La poignée antivol à usage unique SBM Services est destinée aux transports conteneurs ou camions. Elle est composée de 2 solides barres métalliques sécurisées l’une à l’autre par un plomb qui ne se retire qu’à l’aide d’un disque électrique. Résistance à la rupture de 3,5 tonnes.",
-  },
-  {
-    title: "Plomb bouteille SBM Seal",
-    text: "Le « SBM SEAL » est un plomb « bouteille » agréé par les douanes internationales grâce à la norme ISO PASS 17712-2013. Toute tentative d’effraction endommage de façon irrémédiable le plomb bouteille. Conditionné en numérotation consécutive pour faciliter la traçabilité de chaque empotage.",
-  },
-  {
-    title: "Plomb câble",
-    text: "Ce scellé peut être installé sur tous types de conteneurs, châssis, chaînes, cordons tir, portes, et est approuvé ISO PAS 17712 sur ce diamètre de câble (3,5 mm). Après serrage, le câble ne peut plus être retiré sans être coupé.",
-  },
-  {
-    title: "Plomb plastique Easytight",
-    text: "Ce scellé plastique réglable permet de sécuriser vos sachets, sacs, ou vos transports (camions bâchés, citernes, conteneurs). Comme il doit être découpé pour être retiré, vous êtes assuré que personne n’aura eu accès à l’ouverture protégée s’il est toujours présent.",
-  },
-  {
-    title: "Anti-vol châssis",
-    text: "Cet antivol est très facile à poser et protège du vol de votre semi-remorque en empêchant l’attelage illicite. Après installation, il est impossible de désolidariser cette protection du pivot d’attelage. En acier peint, son utilisation ne requiert aucun entretien.",
-  },
-];
-
-const controlItems = [
-  {
-    title: "Enregistreur de température à bande",
-    text: "Ce système de contrôle de température à bande est fréquemment utilisé dans la logistique de tout produit sensible aux écarts de température. Il offre un enregistrement permanent et définitif des conditions de transport, avec lecture rapide et directe des données sur la bande d’enregistrement.",
-  },
-  {
-    title: "Enregistreur de température USB",
-    text: "L’enregistreur de température USB permet de constater précisément les écarts de températures durant le voyage import ou export. La lecture est directe en le connectant à un port USB.",
-  },
-  {
-    title: "Enregistreur de température et d’humidité",
-    text: "Cet enregistreur est idéal pour toute application nécessitant la surveillance de l’humidité relative (HR) : transport, transfert, stockage. Avec son capteur d’humidité numérique intégré, il mesure et enregistre l’humidité relative sans condensation de 10 % à 100 % et la température de -30°C.",
-  },
-  {
-    title: "Système de géolocalisation TT Geo Eagle",
-    text: "L’enregistreur de données TempTale GEO Eagle permet la traçabilité de votre fret maritime pendant le voyage. Peu coûteux, il donne les informations en temps réel : l’heure, la température et la localisation.",
-  },
-];
-
-const humidityItems = [
-  {
-    title: "Absorbeur d’humidité",
-    text: "Les déshydratants en barquettes permettent de réduire et stabiliser le taux d’humidité contenu dans l’air à l’intérieur du conteneur. Ils ont un grand pouvoir d’absorption allant jusqu’à 4 fois leur poids d’origine et sont faciles à mettre en place grâce à leur système de suspension.",
-  },
-  {
-    title: "Absorgel Hanging",
-    text: "AbsorGel Hanging exploite la propension du chlorure de calcium à absorber l’humidité de l’air de façon extrêmement efficace. L’eau absorbée est stockée sous forme de gel : ce procédé élimine tout risque de fuite.",
-  },
-  {
-    title: "Absorpole",
-    text: "Absorpole exploite la capacité du chlorure de calcium à absorber efficacement l’humidité de l’air. L’eau capturée est stockée dans un réservoir conçu pour éviter toute dispersion. Facile d’utilisation, il occupe un espace minimal tout en offrant une efficacité maximale.",
-  },
-  {
-    title: "Sachet déshydratant",
-    text: "De la famille des absorbeurs d’humidité, ce produit est très efficace pour assécher et repousser toute forme d’humidité ou de condensation à l’intérieur d’emballages fermés (colis, cartons, caisses bois, tubes). Il est souvent sollicité pour éviter la fermentation, la moisissure, la corrosion des métaux et la condensation.",
-  },
-];
-
-const protectionItems = [
-  {
-    title: "Bâche pour conteneur Open-Top",
-    text: "Lorsque vous avez besoin de protéger votre chargement à l’intérieur d’un conteneur open top, vous utilisez une bâche spécifique pour open top. Cette bâche recouvre le toit ouvert du conteneur et protège le chargement des intempéries et des curieux.",
-  },
-];
-
-const stowageItems = [
-  {
-    title: "Bâche de retenue",
-    text: "La bâche de retenue préserve directement la sécurité en évitant la chute de colis à l’ouverture des portes, lors du dépotage à destination, ou pendant la ramasse de différents lots dans un conteneur de groupage. Elle permet aussi de séparer et d’identifier les différents lots dans un chargement.",
-  },
-  {
-    title: "Liner vrac + barres 20DC/30DC/40DC/40HC",
-    text: "Ce liner permet de charger du VRAC (céréales, poudres, granulés et autres) dans les conteneurs maritimes. Facile à installer, il peut être mis en place directement par le chargeur.",
-  },
-  {
-    title: "Coussin de calage réutilisable",
-    text: "Pendant le transport, vos marchandises fragiles peuvent glisser et s’endommager. Les coussins de calage Turbo offrent une sécurité optimale tout au long du transport : ils calent les marchandises, résistent aux chocs, gardent leur forme initiale et restent économiques.",
-  },
-  {
-    title: "Barre télescopique",
-    text: "La barre de maintien ajustable est une barre télescopique qui permet de caler des éléments horizontalement ou verticalement à l’intérieur d’un conteneur standard ou frigorifique. Elle se place facilement grâce à sa poignée glissière et au serrage final.",
-  },
-  {
-    title: "Crochet reefer",
-    text: "Notre crochet reefer en acier électro-zingué se glisse dans les T bar floor et se verrouille à l’endroit souhaité en vissant l’œillet. Il permet d’y glisser une sangle pour assurer le bon maintien des marchandises.",
-  },
-  {
-    title: "Sangle à cliquet",
-    text: "Dans sa gamme calage et arrimage, SBM propose des ensembles à cliquet 5 tonnes 9,50 m avec utilisation conteneurs (crochet J) ou camions (crochet U), disponibles en plusieurs dimensions et formats.",
-  },
-  {
-    title: "Sangle d’arrimage voiture à cliquet (1 partie)",
-    text: "Les sangles d’arrimage pour voiture sont simples d’utilisation et permettent un ancrage rapide. Il suffit de former une boucle via l’anneau d’arrimage du conteneur et la jante du véhicule, puis d’ajuster le serrage avec le cliquet.",
-  },
-  {
-    title: "Sangle d’arrimage perdue",
-    text: "La sangle d’arrimage 2 T ou 6 T permet le maintien de charges lourdes pendant leur transport en conteneurs ou camions. Présentée au mètre linéaire, elle s’optimise selon vos besoins, avec boucles et crochets adaptés.",
-  },
-  {
-    title: "Boucles et crochets pour sangles perdues",
-    text: "Les boucles d’arrimage sont indispensables au serrage et au maintien des sangles sur les colis à stabiliser pendant le transport. Simple d’utilisation, c’est le mode d’arrimage le plus répandu quand les sangles à cliquet ne sont pas adaptées.",
-  },
-  {
-    title: "Film bulles",
-    text: "Anti-statique ou classique, disponible en 1 m x 150 m et 1,5 m x 100 m.",
-  },
-];
-
 const pictureOverrides = {
-  "Anti-vol châssis": "/pictures/Anti-vol chassis.png",
   "Bubble liner™ 20DC/40DC/40HC": "/pictures/Bubble liner 20dc .png",
-  "Liner vrac + barres 20DC/30DC/40DC/40HC": "/pictures/Liner vrac + barres 20DC",
 };
 
 const getPicturePath = (title) =>
@@ -307,70 +182,52 @@ function App() {
         </div>
       </section>
 
-      <section className="catalog-section security section-card">
+      <section className="quote-section section-card">
         <div className="content-wrap">
-          <h2 className="section-banner section-banner-red">La sécurité</h2>
-          <div className="catalog-grid">
-            {securityItems.map((item) => (
-              <CatalogCard
-                key={item.title}
-                item={item}
-                titleColorClass="security-title"
+          <h2 className="section-banner section-banner-blue">Demande de devis</h2>
+          <p className="quote-intro">
+            Besoin d’une solution d’isolation ou d’accessoires logistiques ?
+            Envoyez-nous votre demande, nous vous répondons rapidement.
+          </p>
+          <form className="quote-form" action="#" method="post">
+            <label>
+              Nom complet
+              <input type="text" name="fullName" required />
+            </label>
+            <label>
+              Entreprise
+              <input type="text" name="company" />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" required />
+            </label>
+            <label>
+              Téléphone
+              <input type="tel" name="phone" />
+            </label>
+            <label>
+              Besoin principal
+              <select name="need" defaultValue="Isolation">
+                <option>Isolation</option>
+                <option>Housses palettes</option>
+                <option>Accessoires logistiques</option>
+                <option>Solution sur mesure</option>
+              </select>
+            </label>
+            <label className="quote-full">
+              Détails de votre demande
+              <textarea
+                name="message"
+                rows={5}
+                placeholder="Type de marchandise, dimensions, destination, délai, etc."
+                required
               />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="catalog-section control section-card">
-        <div className="content-wrap">
-          <h2 className="section-banner section-banner-orange">Le contrôle</h2>
-          <div className="catalog-grid catalog-grid-control">
-            {controlItems.map((item) => (
-              <CatalogCard
-                key={item.title}
-                item={item}
-                titleColorClass="control-title"
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="catalog-section humidity section-card">
-        <div className="content-wrap">
-          <h2 className="section-banner section-banner-orange">
-            La gestion de l’humidité
-          </h2>
-          <div className="catalog-grid">
-            {humidityItems.map((item) => (
-              <CatalogCard key={item.title} item={item} titleColorClass="control-title" />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="catalog-section protection section-card">
-        <div className="content-wrap">
-          <h2 className="section-banner section-banner-orange">La Protection</h2>
-          <div className="catalog-grid catalog-grid-single">
-            {protectionItems.map((item) => (
-              <CatalogCard key={item.title} item={item} titleColorClass="control-title" />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="catalog-section stowage section-card">
-        <div className="content-wrap">
-          <h2 className="section-banner section-banner-orange">
-            Le calage et l’arrimage
-          </h2>
-          <div className="catalog-grid">
-            {stowageItems.map((item) => (
-              <CatalogCard key={item.title} item={item} titleColorClass="control-title" />
-            ))}
-          </div>
+            </label>
+            <button type="submit" className="quote-submit">
+              Envoyer la demande
+            </button>
+          </form>
         </div>
       </section>
 

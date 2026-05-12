@@ -196,7 +196,7 @@ h2 {
   font-size: clamp(1.7rem, 4vw, 3rem);
   text-align: center;
   margin-top: 0;
-  color: #4ead45;
+  color: #fff;
 }
 
 .products-grid {
@@ -284,6 +284,10 @@ h2 {
   background: linear-gradient(130deg, #5fc44a 0%, #4ead45 100%);
 }
 
+.section-banner-blue {
+  background: linear-gradient(130deg, #1f76ce 0%, #0f4d97 100%);
+}
+
 .catalog-grid {
   display: grid;
   gap: 1.15rem;
@@ -335,6 +339,61 @@ h2 {
   line-height: 1.63;
 }
 
+.quote-section {
+  background: #f0f6ff;
+}
+
+.quote-intro {
+  margin: 0 0 1rem;
+  max-width: 860px;
+}
+
+.quote-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.quote-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-weight: 600;
+  color: #194a7f;
+}
+
+.quote-form input,
+.quote-form select,
+.quote-form textarea {
+  width: 100%;
+  border: 1px solid #b7cee8;
+  border-radius: 10px;
+  padding: 0.72rem 0.8rem;
+  font: inherit;
+  color: #183452;
+  background: #fff;
+}
+
+.quote-form textarea {
+  resize: vertical;
+}
+
+.quote-full {
+  grid-column: 1 / -1;
+}
+
+.quote-submit {
+  grid-column: 1 / -1;
+  justify-self: start;
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem 1.2rem;
+  background: #0f4d97;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
 .contact-section {
   background: linear-gradient(125deg, #69d2e1, #2269c2 55%, #1b4f9e);
 }
@@ -373,6 +432,10 @@ h2 {
   .products-grid,
   .eco-content,
   .catalog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quote-form {
     grid-template-columns: 1fr;
   }
 
