@@ -1,8 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
+
 :root {
-  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Inter", "Segoe UI", sans-serif;
   color: #133047;
   background: #eef3f9;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 * {
@@ -25,10 +27,11 @@ main {
 }
 
 .hero {
-  padding: 4rem 0 3.2rem;
+  padding: 5.5rem 0 4rem;
   background:
-    radial-gradient(circle at 12% 12%, rgba(255, 255, 255, 0.2), transparent 35%),
-    linear-gradient(124deg, #8ed1ff 0%, #237fd5 48%, #0e458f 100%);
+    radial-gradient(ellipse at 8% 30%, rgba(255,255,255,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 90% 80%, rgba(0,80,180,0.25) 0%, transparent 50%),
+    linear-gradient(124deg, #6ec6ff 0%, #1e78d8 45%, #0b3d8a 100%);
   color: #fff;
 }
 
@@ -123,21 +126,36 @@ h2 {
 .icon-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.75rem;
+  gap: 1rem;
   list-style: none;
   padding: 0;
-  margin: 0.2rem 0 0;
+  margin: 1rem 0 0;
 }
 
 .icon-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
   background: #ffffff;
-  border: 1px solid #d9e7f8;
-  border-radius: 10px;
-  padding: 0.75rem 0.85rem;
+  border: 1px solid #c8ddf5;
+  border-radius: 14px;
+  padding: 1.1rem 1rem;
+  box-shadow: 0 6px 18px rgba(15, 77, 151, 0.08);
+  font-weight: 600;
+  font-size: 0.97rem;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.icon-list li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(15, 77, 151, 0.14);
 }
 
 .icon-list li::before {
-  content: "✅ ";
+  content: "✅";
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  line-height: 1.2;
 }
 
 .eco-header h2 {
@@ -301,9 +319,15 @@ h2 {
 .catalog-card {
   background: #fff;
   border: 1px solid #d9e2ee;
-  border-radius: 12px;
-  padding: 1rem;
+  border-radius: 14px;
+  padding: 1.1rem;
   box-shadow: 0 8px 20px rgba(18, 41, 67, 0.06);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.catalog-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 34px rgba(18, 41, 67, 0.11);
 }
 
 .catalog-image {
@@ -387,11 +411,20 @@ h2 {
   justify-self: start;
   border: none;
   border-radius: 10px;
-  padding: 0.75rem 1.2rem;
-  background: #0f4d97;
+  padding: 0.85rem 1.8rem;
+  background: linear-gradient(130deg, #1f76ce, #0f4d97);
   color: #fff;
   font-weight: 700;
+  font-size: 1rem;
   cursor: pointer;
+  letter-spacing: 0.03em;
+  box-shadow: 0 6px 18px rgba(15, 77, 151, 0.3);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.quote-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(15, 77, 151, 0.4);
 }
 
 .contact-section {
