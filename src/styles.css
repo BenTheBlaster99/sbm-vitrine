@@ -373,6 +373,187 @@ body { margin: 0; }
   margin-bottom: 0.5rem;
 }
 .product-card p { font-size: 0.9rem; color: #4a6072; line-height: 1.6; }
+.product-card-clickable { cursor: pointer; }
+.product-card-clickable:focus-visible {
+  outline: 2px solid #1f76ce;
+  outline-offset: 3px;
+}
+
+.fiche-link {
+  display: inline-block;
+  margin-top: 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1f76ce;
+}
+
+/* ── FICHE TECHNIQUE MODAL ────────────────────────── */
+.fiche-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(6, 18, 40, 0.62);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.fiche-modal {
+  position: relative;
+  width: min(820px, 100%);
+  max-height: min(90vh, 900px);
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 20px;
+  padding: 2rem 2rem 1.5rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+  color: #0f1c2e;
+}
+
+.fiche-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  border: none;
+  background: transparent;
+  font-size: 2rem;
+  line-height: 1;
+  color: #6a7f96;
+  cursor: pointer;
+}
+.fiche-close:hover { color: #0a1e42; }
+
+.fiche-header {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1.5rem;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.fiche-badge {
+  display: inline-block;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  margin-bottom: 0.7rem;
+}
+
+.fiche-header h2 {
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  font-weight: 900;
+  color: #0a1e42;
+  line-height: 1.15;
+  margin-bottom: 0.4rem;
+}
+
+.fiche-subtitle {
+  color: #4a6072;
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+}
+
+.fiche-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.fiche-tags span {
+  background: #e8f2ff;
+  color: #1a5fb0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.25rem 0.65rem;
+}
+
+.fiche-image {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  background: #f4f8fc;
+  border-radius: 12px;
+  border: 1px solid #e2ebf5;
+}
+
+.fiche-desc {
+  color: #3a5168;
+  line-height: 1.65;
+  margin-bottom: 1.4rem;
+  font-size: 0.95rem;
+}
+
+.fiche-block { margin-bottom: 1.35rem; }
+.fiche-block h3 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0a1e42;
+  margin-bottom: 0.65rem;
+  letter-spacing: 0.02em;
+}
+.fiche-block ul {
+  padding-left: 1.15rem;
+  color: #3a5168;
+  line-height: 1.6;
+  font-size: 0.92rem;
+}
+.fiche-block li { margin-bottom: 0.35rem; }
+
+.fiche-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.fiche-table th {
+  text-align: left;
+  width: 38%;
+  padding: 0.55rem 0.7rem;
+  background: #f3f7fc;
+  color: #1a5fb0;
+  font-weight: 700;
+  border-bottom: 1px solid #e2ebf5;
+  vertical-align: top;
+}
+.fiche-table td {
+  padding: 0.55rem 0.7rem;
+  color: #2a3f55;
+  border-bottom: 1px solid #eef2f7;
+}
+
+.fiche-avantages li::marker { color: #1f76ce; }
+
+.fiche-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 0.5rem;
+  border-top: 1px solid #eef2f7;
+  margin-top: 0.5rem;
+}
+
+.fiche-cta {
+  display: inline-block;
+  background: #1f76ce;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  padding: 0.75rem 1.25rem;
+  box-shadow: 0 6px 18px rgba(31, 118, 206, 0.3);
+}
+.fiche-cta:hover { background: #1660b0; }
+
+@media (max-width: 720px) {
+  .fiche-header { grid-template-columns: 1fr; }
+  .fiche-image { height: 150px; }
+  .fiche-modal { padding: 1.4rem 1.15rem 1.2rem; }
+}
 
 /* ── CATALOG CARDS ────────────────────────────────── */
 .catalog-grid {
@@ -407,6 +588,12 @@ body { margin: 0; }
   margin-bottom: 0.45rem;
 }
 .catalog-card p { font-size: 0.88rem; color: #4a6072; line-height: 1.58; }
+.catalog-card-clickable { cursor: pointer; }
+.catalog-card-clickable:focus-visible {
+  outline: 2px solid #1f76ce;
+  outline-offset: 3px;
+}
+.catalog-card .fiche-link { margin-top: 0.7rem; }
 
 /* ── DEVIS SECTION ────────────────────────────────── */
 .section-devis {
